@@ -1,3 +1,5 @@
+import os
+
 def conversion(num):
     single = ['','one','two','three','four','five','six','seven','eight','nine','ten']
     double = ['ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','ninteen','twenty']
@@ -53,8 +55,6 @@ def conversion(num):
 
     return l2 + " "+dotop
 
-
-
 def main():
     print("\n\n1 - Enter number of your amount")
     print("2 - Add a file")
@@ -62,7 +62,7 @@ def main():
     choice = int(input("Enter your choice: "))
     if(choice == 1):
         number = input("Amount: ")
-        print("Converted amount: "+conversion(number))
+        print("Aomunt in Characters: "+conversion(number))
         main()
     elif(choice == 2):
         try:
@@ -71,49 +71,28 @@ def main():
             file1 = open(file_name,'r')
             data = file1.readlines()
             data_list = []
-        
+            file1.close()
+            column = int(input("Select Column number to Process: "))-1
+
             for i in data:
-                i = i.split(', ')
-                val = str(i[-1].split("\n")[0])
+                i = i.split(',')
+                val = str(i[column].split("\n")[0])
                 data_list.append(float(val))
 
             for j in data_list:
                 output = "Amount in Characters:{}\n".format(conversion(j))
-                record_file = open('converted_currency.txt','a')
+                record_file = open('temp.txt','a')
                 record_file.write(output)
                 record_file.close()
+            # os.remove(file_name)
+            # os.rename("temp.txt",file_name)
             print("File Created Successfully") 
             main()      
         except FileNotFoundError:
-            print("File Name you Have Entered does not Exist!")
+            print("\nFile Name you Have Entered do not Exist!")
             main()
     if(choice == 3):
         print("Goodbye!")
         exit(0)
 
 main()
-
-
-# file_name = str(input("Input Your File Name: "))
-
-# file1 = open(file_name,'r')
-# data = file1.readlines()
-# data_list = []
-# # names = []
-
-# # for name in data:
-# #     name = name.split(',')
-# #     names.append(name)
-# # print(data_list)
-
-# for i in data:
-#     i = i.split(', ')
-#     val = str(i[-1].split("\n")[0])
-#     data_list.append(float(val))
-
-
-# for j in data_list:
-#     output = "Amount in Characters:{}\n".format(conversion(j))
-#     record_file = open('converted_currency.txt','a')
-#     record_file.write(output)
-#     record_file.close()
