@@ -53,7 +53,7 @@ It is just a simple text printing application consist of single _LineEdit_ and t
 The input in LineEdit can be anything as it doesn't have any restrictions.
 
 Images
-![ui.jpg](ui.jpg)
+![ui.jpg](ui.JPG)
 
 #How it Works:
 
