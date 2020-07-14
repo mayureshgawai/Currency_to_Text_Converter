@@ -71,26 +71,46 @@ def main():
             file1 = open(file_name,'r')
             data = file1.readlines()
             data_list = []
+            row_data = []
             file1.close()
             column = int(input("Select Column number to Process: "))-1
 
             for i in data:
-                i = i.split(',')
-                val = str(i[column].split("\n")[0])
-                data_list.append(float(val))
-
+                try:
+                    i = i.split(',')        # Use try except to handle index out of range
+                    val = str(i[column].split("\n")[0])
+                    data_list.append(float(val))
+                except:
+                    val = ""
+                    data_list.append(val)
+                i.insert(column,val)
+                i.pop(-1)
+                row_data.append(i)
+            # print(row_data)
+            c = 0
+            file_name1 = file_name.split('.')[0]
             for j in data_list:
-                output = "Amount in Characters:{}\n".format(conversion(j))
-                record_file = open('temp.txt','a')
-                record_file.write(output)
+                # output = "Amount in Characters:{}\n".format(conversion(j))
+                if(j == ""):
+                    output = ""
+                else:
+                    output = conversion(j)
+                record_file = open(file_name1+'-converted.txt','a')
+                row_data[c].insert(len(row_data[c]),output)
+                string = ','.join(row_data[c])
+                record_file.write(string+"\n")
+                # row_data.pop(0)
                 record_file.close()
-            # os.remove(file_name)
-            # os.rename("temp.txt",file_name)
+                c += 1
             print("File Created Successfully") 
             main()      
         except FileNotFoundError:
             print("\nFile Name you Have Entered do not Exist!")
             main()
+        except PermissionError:
+            print("Can't Perform the Operation because the file is Already Opened in Another Program")
+            main()
+            
     if(choice == 3):
         print("Goodbye!")
         exit(0)
