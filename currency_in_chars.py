@@ -221,7 +221,7 @@ def main():
                 i.insert(column,val)
                 i.pop(-1)
                 row_data.append(i)
-            # print(row_data)
+            print(row_data)
             c = 0
             file_name1 = file_name.split('.')[0]
             for j in data_list:
