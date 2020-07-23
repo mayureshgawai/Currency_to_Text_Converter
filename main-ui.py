@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'tabs2.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog
 
@@ -59,11 +50,11 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.comboBox_2.setFont(font)
-        self.comboBox_2.setStyleSheet("color:black;background-color:white")
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
+        self.comboBox_2.setStyleSheet("background-color:white")
         self.gridLayout_2.addWidget(self.comboBox_2, 0, 1, 1, 1)
         spacerItem2 = QtWidgets.QSpacerItem(170, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem2, 0, 0, 1, 1)
@@ -133,11 +124,12 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName("label_4")
         self.horizontalLayout_5.addWidget(self.label_4)
         self.comboBox = QtWidgets.QComboBox(self.tab_4)
-        self.comboBox.setStyleSheet("border:3px solid grey;color:black;background-color:white;")
+        
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
+        self.comboBox.setStyleSheet("border:3px solid grey;color:black;background-color:white;")
         self.horizontalLayout_5.addWidget(self.comboBox)
         spacerItem15 = QtWidgets.QSpacerItem(250, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_5.addItem(spacerItem15)
@@ -254,10 +246,10 @@ class Ui_MainWindow(object):
         column = int(self.spinBox_file.text())-1
         lang = self.comboBox.currentText()
         path_line = self.lineEdit_file_path.text()
-        path_line = path_line.split('/')
-        file_name = str(path_line[-1])
+        path_line1 = path_line.split('/')
+        file_name = str(path_line1[-1])
         try:
-            file1 = open(file_name,'r')
+            file1 = open(path_line,'r')
             data = file1.readlines()
             data_list = []
             row_data = []
@@ -265,7 +257,7 @@ class Ui_MainWindow(object):
 
             for i in data:
                 try:
-                    i = i.split(',')        # Use try except to handle index out of range
+                    i = i.split(',')       
                     val = str(i[column].split("\n")[0])
                     data_list.append(float(val))
                 except:
@@ -277,7 +269,7 @@ class Ui_MainWindow(object):
                 c = 0
                 file_name1 = file_name.split('.')[0]
                 for j in data_list:
-                    # output = "Amount in Characters:{}\n".format(conversion(j))
+                    
                     if(j == ""):
                         output = ""
                     else:
@@ -299,7 +291,7 @@ class Ui_MainWindow(object):
             self.res_label.setText("File not found.")
             self.res_label.setStyleSheet("color:red")
         except PermissionError:
-            # print("Can't Perform the Operation because the file is Already Opened in Another Program")
+            
             self.res_label.setText("Can't Perform the Operation because the file is Already Opened in Another Program")
             self.res_label.setStyleSheet("color:red")
 
@@ -434,8 +426,10 @@ class Ui_MainWindow(object):
         for i in strg1:
             l2 = l2 +" "+i 
 
-        self.textEdit_2.setText(num+" - "+l2 + " "+dotop)
-        # return l2 +" "+dotop
+        if(self.counter_val == 1):
+            self.textEdit_2.setText(num+" - "+l2 + " "+dotop)
+        elif(self.counter_val == 2):
+            return l2 + " "+dotop
 
 
     def conv_marathi(self,num):
@@ -496,12 +490,10 @@ class Ui_MainWindow(object):
         for i in strg1:
             l2 = l2 +" "+i 
 
-        # return l2 +" "+dotop
-        self.textEdit_2.setText(num+" - "+l2 + " "+dotop)
-
-
-
-
+        if(self.counter_val == 1):
+            self.textEdit_2.setText(num+" - "+l2 + " "+dotop)
+        elif(self.counter_val == 2):
+            return l2 + " "+dotop
 
 
     def retranslateUi(self, MainWindow):
