@@ -1,17 +1,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog
+from PyQt5.QtWidgets import QMessageBox
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(959, 525)
-
+        
         MainWindow.setTabShape(QtWidgets.QTabWidget.Triangular)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
+        
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setStyleSheet("")
         self.centralwidget.setStyleSheet("background-image:url('blue.jpg')")
@@ -271,7 +273,7 @@ class Ui_MainWindow(object):
                 for j in data_list:
                     
                     if(j == ""):
-                        output = ""
+                        output = "\n"
                     else:
                         if(lang == "English"):
                             output = self.conversion(j)
@@ -285,15 +287,50 @@ class Ui_MainWindow(object):
                     record_file.write(string+"\n")
                     record_file.close()
                     c += 1     
-                self.res_label.setText("File Created Successfully")
-                self.res_label.setStyleSheet("color:green;")
+
+                # dup_rm = open(file_name1+'-converted.txt','r')
+                # dup_data = dup_rm.readlines()
+                # dup_rm.close()
+
+                # for r1 in dup_data:
+                #     print(r1)
+
+
+                msg = QMessageBox()
+                msg.setWindowTitle("Information")
+                msg.setIcon(QMessageBox.Information)
+                msg.setStandardButtons(QMessageBox.Cancel|QMessageBox.Ok)
+                msg.setDefaultButton(QMessageBox.Ok)
+                msg.setText("File Created Successfully.")
+                x = msg.exec_()
+
+                # self.res_label.setStyleSheet("color:green;")
         except FileNotFoundError:
-            self.res_label.setText("File not found.")
-            self.res_label.setStyleSheet("color:red")
+            # self.res_label.setText("File not found.")
+            # self.res_label.setStyleSheet("color:red")
+
+            msg = QMessageBox()
+            msg.setWindowTitle("Information")
+            msg.setIcon(QMessageBox.Critical)
+            msg.setStandardButtons(QMessageBox.Cancel|QMessageBox.Ok)
+            msg.setDefaultButton(QMessageBox.Ok)
+            # msg.buttonClicked.connect(self.convertfile_button)
+            msg.setText("File not Found.")
+            x = msg.exec_()
+
         except PermissionError:
             
-            self.res_label.setText("Can't Perform the Operation because the file is Already Opened in Another Program")
-            self.res_label.setStyleSheet("color:red")
+            # self.res_label.setText("Can't Perform the Operation because the file is Already Opened in Another Program")
+            # self.res_label.setStyleSheet("color:red")
+
+            msg = QMessageBox()
+            msg.setWindowTitle("Information")
+            msg.setIcon(QMessageBox.Critical)
+            msg.setStandardButtons(QMessageBox.Cancel|QMessageBox.Ok)
+            msg.setDefaultButton(QMessageBox.Ok)
+            # msg.buttonClicked.connect(self.convertfile_button)
+            msg.setText("Can't Perform the Operation because the file is Already Opened in Another Program")
+            x = msg.exec_()
 
 
 
@@ -307,8 +344,6 @@ class Ui_MainWindow(object):
             self.conv_hindi(num)
         elif(lang == "Marathi"):
             self.conv_marathi(num)
-
-
 
 
     def conversion(self,num):

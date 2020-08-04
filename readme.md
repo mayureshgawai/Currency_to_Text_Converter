@@ -37,7 +37,7 @@ def console_output():
  -->
 
 
-# Hello World 
+<!-- # Hello World 
 ## Desktop Application
 
 _Description_
@@ -55,7 +55,7 @@ The input in LineEdit can be anything as it doesn't have any restrictions.
 Images
 ![ui.jpg](ui.JPG)
 
-#How it Works:
+##How it Works:
 
 1. Enter any string Input in LineEdit
 2. Press the button from your choice.
@@ -90,4 +90,23 @@ self.lineEdit.setObjectName("lineEdit")
 
     1. [Tech with Tim](https://www.youtube.com/watch?v=Vde5SH8e1OQ&list=PLzMcBGfZo4-lB8MZfHPLTEHO9zJDDLpYj "Visit Channel")
 
-    2. [Programing Knowledge](https://www.youtube.com/watch?v=_bi0SqW_4L0&list=PLS1QulWo1RIZTkXbVkjr5Z3m-uMs05u7V "Visit ")
+    2. [Programing Knowledge](https://www.youtube.com/watch?v=_bi0SqW_4L0&list=PLS1QulWo1RIZTkXbVkjr5Z3m-uMs05u7V "Visit ") -->
+
+
+# Currency to Text Converter
+
+The **Currency to Text Converter** is an desktop application which converts a decimal amount of currency into words. Two kinds of features are provided, first one i.e. **Convert** tab converts a single value for user and second one i.e. **Insert a file** tab converts a set of inputs for the user, as you can see in the screnshot below.
+
+## Screenshots:-
+![ui.jpg](tab1.JPG)
+![ui.jpg](tab2.JPG)
+
+
+As the reference of screenshot, 
+### tab 1:
+
+Simply just enter the number value and hit the **Convert** button.
+
+### tab 2:
+
+Click on the **Browse** button or enter your file path manually. File will be processed from the respective path user initialized. Selct a **column** number from where you want to take the inputs, remember, inputs outside of this column will not be considered. Provide your choice for **language** and hit the **Convert** button.  You will find converted output file in same directory where the application is installed.
