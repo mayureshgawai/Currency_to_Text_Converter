@@ -112,4 +112,4 @@ Simply just enter the number value and hit the **Convert** button.
 Click on the **Browse** button or enter your file path manually. File will be processed from the respective path user initialized. Selct a **column** number from where you want to take the inputs, remember, inputs outside of this column will not be considered. Provide your choice for **language** and hit the **Convert** button.  You will find converted output file in same directory where the application is installed.
 
 
-####You will find the application file in **dist** folder.
+You will find the application file in **dist** folder.
